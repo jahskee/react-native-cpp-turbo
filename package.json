@@ -1,6 +1,6 @@
 {
   "name": "react-native-cpp-turbo",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "React Native Turbo Module with C++ shared library",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
