@@ -8,7 +8,7 @@ export interface Spec extends TurboModule {
   power(base: number, exponent: number): number;
 }
 
-const isTurboModuleEnabled = global.__turboModuleProxy != null;
+const isTurboModuleEnabled = (global as any).__turboModuleProxy != null;
 
 const CppTurbo = isTurboModuleEnabled
   ? TurboModuleRegistry.getEnforcing<Spec>('CppTurbo')
