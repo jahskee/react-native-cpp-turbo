@@ -4,9 +4,10 @@ import androidx.annotation.NonNull;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.turbomodule.core.interfaces.TurboModule;
+import com.facebook.react.bridge.ReactMethod;
 
 @ReactModule(name = CppTurboModule.NAME)
-public class CppTurboModule extends NativeCppTurboSpec {
+public class CppTurboModule extends com.facebook.react.bridge.ReactContextBaseJavaModule implements TurboModule {
     public static final String NAME = "CppTurbo";
 
     static {
@@ -27,17 +28,17 @@ public class CppTurboModule extends NativeCppTurboSpec {
     private native double nativeMultiply(double a, double b);
     private native double nativePower(double base, double exponent);
 
-    @Override
+    @ReactMethod(isBlockingSynchronousMethod = true)
     public double add(double a, double b) {
         return nativeAdd(a, b);
     }
 
-    @Override
+    @ReactMethod(isBlockingSynchronousMethod = true)
     public double multiply(double a, double b) {
         return nativeMultiply(a, b);
     }
 
-    @Override
+    @ReactMethod(isBlockingSynchronousMethod = true)
     public double power(double base, double exponent) {
         return nativePower(base, exponent);
     }
