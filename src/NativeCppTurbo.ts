@@ -1,3 +1,4 @@
+import { NativeModules } from 'react-native';
 import type { TurboModule } from 'react-native';
 import { TurboModuleRegistry } from 'react-native';
 
@@ -7,4 +8,10 @@ export interface Spec extends TurboModule {
   power(base: number, exponent: number): number;
 }
 
-export default TurboModuleRegistry.getEnforcing<Spec>('CppTurbo');
+const isTurboModuleEnabled = global.__turboModuleProxy != null;
+
+const CppTurbo = isTurboModuleEnabled
+  ? TurboModuleRegistry.getEnforcing<Spec>('CppTurbo')
+  : NativeModules.CppTurbo;
+
+export default CppTurbo as Spec;
